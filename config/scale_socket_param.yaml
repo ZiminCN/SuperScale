@@ -1,0 +1,6 @@
+scale_message:
+  sender:
+    weight: "string"
+
+  receiver:
+    response: "string"

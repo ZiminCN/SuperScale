@@ -1,0 +1,3 @@
+ultra_sound_message:
+  sender:
+    distance: "string"
