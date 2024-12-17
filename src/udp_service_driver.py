@@ -26,21 +26,24 @@ class UdpServiceDriver:
         if(self.service_socket is None):
             return
 
-        if(self.is_connect_with_client is not False):
-            return
-
         data, addr = self.service_socket.recvfrom(1024)
-        self.udp_client_addr = addr
-        print(f"Received message: {data.decode()} from udp client {addr}")
 
-    def send_udp_service_message(self):
+        if(data.decode() != "0xDEADCODE"):
+            print(f"Received message: {data.decode()} from udp client {addr}")
+            return
+        else:
+            self.udp_client_addr = addr
+            self.is_connect_with_client = True
+            print(f"Received message: {data.decode()} from udp client {addr}")
+
+    def send_udp_service_message(self, message):
         if(self.service_socket is None):
             return
 
         if(self.is_connect_with_client is False):
             return
 
-        tx_message = "Test!"
+        tx_message = str(message)
         self.service_socket.sendto(tx_message.encode(), self.udp_client_addr)
         
 

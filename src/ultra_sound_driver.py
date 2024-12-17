@@ -46,7 +46,8 @@ class UltraSoundDriver:
                 self.Distance = (self.TimeDelta * 34300) / 2
 
         ## 5. return distance
-                print("Distance is {}".format(self.Distance))
+                self.Distance = round(self.Distance, 2)
+                ## print("Distance is {}".format(self.Distance))
                 return self.Distance
             else:
                 pass
